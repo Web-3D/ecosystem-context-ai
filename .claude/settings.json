@@ -1,0 +1,41 @@
+{
+  "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"c:\\Web-3D\\.claude\\save-session.js\"",
+            "timeout": 20,
+            "statusMessage": "Saving session memory before compact..."
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"c:\\Web-3D\\THREEJS\\update-index.js\"",
+            "timeout": 15,
+            "statusMessage": "Updating workspace index..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"c:\\Web-3D\\.claude\\validate-hook.js\"",
+            "timeout": 15,
+            "statusMessage": "Validating output..."
+          }
+        ]
+      }
+    ]
+  }
+}

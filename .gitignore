@@ -1,0 +1,14 @@
+# Each has its own git repo — tracked separately
+THREEJS/
+BABYLONJS/
+assets/
+
+# Windows system files
+desktop.ini
+Thumbs.db
+
+# Local settings (never commit)
+.claude/settings.local.json
+
+# Node
+node_modules/
