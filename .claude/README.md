@@ -9,28 +9,27 @@
 ## Cấu trúc thư mục
 
 ```
-.claude/
-├── README.md              ← file này — index + hướng dẫn hệ thống
-├── SKILLS-ROADMAP.md      ← trạng thái 12 skills, priority, khi nào build
-├── CREDIBILITY.md         ← độ tin cậy skills & modules — verified vs estimated
-└── skills/
-    ├── dispose-pattern/
-    │   └── SKILL.md
-    ├── shader-tsl/
-    │   └── SKILL.md
-    ├── performance-budget/
-    │   └── SKILL.md
-    ├── module-handoff/
-    │   └── SKILL.md
-    ├── new-module/
-    │   └── SKILL.md
-    ├── gltf-pipeline/
-    │   └── SKILL.md
-    ├── global-uniforms/
-    │   └── SKILL.md
-    └── triplanar-mapping/
-        └── SKILL.md
+Web-3D/
+├── .claude/                         ← ecosystem root (file này)
+│   └── skills/
+│       └── shared-gltf-pipeline/   ← engine-agnostic, load từ mọi workspace
+│
+├── THREEJS/.claude/                 ← Three.js engine skills (tracked by Private-threejs)
+│   └── skills/
+│       ├── dispose-pattern/
+│       ├── global-uniforms/
+│       ├── module-handoff/
+│       ├── new-module/
+│       ├── performance-budget/
+│       ├── shader-tsl/
+│       └── triplanar-mapping/
+│
+└── BABYLONJS/.claude/               ← Babylon.js engine skills
+    └── skills/
+        └── dispose-pattern/         ← placeholder, build khi Phase A Babylon bắt đầu
 ```
+
+**Cách Claude Code load:** Khi mở workspace tại `THREEJS/`, tự động load cả `THREEJS/.claude/skills/` lẫn `Web-3D/.claude/skills/` (parent). Không cần prefix vì mỗi workspace chỉ thấy skills của engine mình.
 
 ---
 
@@ -55,20 +54,20 @@ description: [QUAN TRỌNG NHẤT] — Claude dùng field này để quyết đ�
 
 ## Skill Index
 
-| Skill                | Trạng thái | Trigger chính                                      | Depends on                                      |
-| -------------------- | ---------- | -------------------------------------------------- | ----------------------------------------------- |
-| `dispose-pattern`    | ✅ Done    | "tạo class", "geometry", "material", "texture"     | —                                               |
-| `shader-tsl`         | ✅ Done    | "viết shader", "uniform", "GLSL", "TSL"            | dispose-pattern                                 |
-| `performance-budget` | ✅ Done    | "FPS", "draw call", "lag", "thêm object"           | —                                               |
-| `module-handoff`     | ✅ Done    | "import module", "lấy module", "adapt module"      | dispose-pattern                                 |
-| `new-module`         | ✅ Done    | "tạo module mới", "scaffold module"                | dispose-pattern, shader-tsl, performance-budget |
-| `gltf-pipeline`      | ✅ Done    | "gltf-transform", "optimize glb", "weld", "draco"  | —                                               |
-| `triplanar-mapping`  | ✅ Done    | "tri-planar", "world-space texture", "bypass UV"   | dispose-pattern, shader-tsl, global-uniforms    |
-| `global-uniforms`    | ✅ Done    | "uTime", "uWeather", "sync shader"                 | dispose-pattern, shader-tsl                     |
-| `world-class`        | 📋 Phase B | "tạo World class", "extends BaseWorld"             | dispose-pattern, performance-budget             |
-| `new-project`        | 📋 Phase B | "tạo project mới", "new project"                   | —                                               |
-| `lod-system`         | 📋 Phase B | "LOD", "level of detail", "billboard"              | performance-budget                              |
-| `vat-pipeline`       | 📋 Phase C | "VAT", "vertex animation texture", "Unreal export" | shader-tsl                                      |
+| Skill                           | Trạng thái | Trigger chính                                      | Depends on                                                              |
+| ------------------------------- | ---------- | -------------------------------------------------- | ----------------------------------------------------------------------- |
+| `dispose-pattern`       | ✅ Done    | "tạo class", "geometry", "material", "texture"     | —                                                                       |
+| `shader-tsl`            | ✅ Done    | "viết shader", "uniform", "GLSL", "TSL"            | dispose-pattern                                                 |
+| `performance-budget`    | ✅ Done    | "FPS", "draw call", "lag", "thêm object"           | —                                                                       |
+| `module-handoff`        | ✅ Done    | "import module", "lấy module", "adapt module"      | dispose-pattern                                                 |
+| `new-module`            | ✅ Done    | "tạo module mới", "scaffold module"                | dispose-pattern, shader-tsl, performance-budget |
+| `shared-gltf-pipeline`          | ✅ Done    | "gltf-transform", "optimize glb", "weld", "draco"  | —                                                                       |
+| `triplanar-mapping`     | ✅ Done    | "tri-planar", "world-space texture", "bypass UV"   | dispose-pattern, shader-tsl, global-uniforms    |
+| `global-uniforms`       | ✅ Done    | "uTime", "uWeather", "sync shader"                 | dispose-pattern, shader-tsl                             |
+| `world-class`           | 📋 Phase B | "tạo World class", "extends BaseWorld"             | dispose-pattern, performance-budget                     |
+| `new-project`           | 📋 Phase B | "tạo project mới", "new project"                   | —                                                                       |
+| `lod-system`            | 📋 Phase B | "LOD", "level of detail", "billboard"              | performance-budget                                              |
+| `vat-pipeline`          | 📋 Phase C | "VAT", "vertex animation texture", "Unreal export" | shader-tsl                                                      |
 
 ---
 
@@ -232,25 +231,25 @@ Hiện tại chưa cần — 4 skills, overlap chưa đủ lớn.
 
 ```
 LEAF (không phụ thuộc):
-  dispose-pattern ──────────────────────────────────────┐
-  performance-budget ──────────────────────────────┐    │
-  gltf-pipeline                                    │    │
-  new-project                                      │    │
-                                                   │    │
-LEVEL 1 (phụ thuộc leaf):                          │    │
-  shader-tsl ──────────────────────────────────────┼────┘
-  module-handoff ──────────────────────────────────┘
+  dispose-pattern ─────────────────────────────────────────┐
+  performance-budget ───────────────────────────────────┐  │
+  shared-gltf-pipeline                                          │  │
+  new-project                                           │  │
+                                                                │  │
+LEVEL 1 (phụ thuộc leaf):                                       │  │
+  shader-tsl ─────────────────────────────────────────  ┼──┘
+  module-handoff ─────────────────────────────────────  ┘
   lod-system ◄── performance-budget
-                                                   
-LEVEL 2 (phụ thuộc level 1):                       
-  global-uniforms ◄── dispose-pattern + shader-tsl 
+                                                                   
+LEVEL 2 (phụ thuộc level 1):                                       
+  global-uniforms ◄── dispose-pattern + shader-tsl
   world-class     ◄── dispose-pattern + performance-budget
-  vat-pipeline    ◄── shader-tsl                   
-                                                   
-LEVEL 3 (phụ thuộc level 2):                       
+  vat-pipeline    ◄── shader-tsl
+                                                                   
+LEVEL 3 (phụ thuộc level 2):                                       
   triplanar-mapping ◄── dispose-pattern + shader-tsl + global-uniforms
-                                                   
-ORCHESTRATOR (điều phối nhiều skills):             
+                                                                   
+ORCHESTRATOR (điều phối nhiều skills):                             
   new-module ◄── dispose-pattern + shader-tsl + performance-budget
 ```
 
@@ -309,7 +308,7 @@ Skills đã build cần upgrade lên Level 2 (thêm `## Dependencies` section):
 Skills sẽ build (Phase A) — build đúng level ngay từ đầu:
 
 - [x] `new-module` — build ở Level Orchestrator
-- [x] `gltf-pipeline` — build ở Leaf
+- [x] `shared-gltf-pipeline` — build ở Leaf
 - [x] `global-uniforms` — build ở Level 2
 - [x] `triplanar-mapping` — build ở Level 2
 

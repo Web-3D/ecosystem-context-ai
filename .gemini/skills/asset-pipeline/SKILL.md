@@ -114,7 +114,7 @@ Khi Blender MCP xử lý xong:
 
 ## Workflow C: Asset ready cho browser (optimized → production)
 
-Sau khi chạy gltf-transform pipeline (`gltf-pipeline` skill):
+Sau khi chạy gltf-transform pipeline (`shared-gltf-pipeline` skill):
 
 ### 1. Copy output vào `production/`
 

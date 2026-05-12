@@ -1,7 +1,8 @@
-# Skills Roadmap — Three.js Project
+# Skills Roadmap — Web-3D Ecosystem
 
-> 12 skills tổng thể cho toàn bộ workflow dự án.
-> 8/12 skills đã build. 4 skills còn lại — Phase B/C.
+> Skills cho tất cả engines trong ecosystem (THREEJS, BABYLONJS).
+> Prefix: `threejs-` = Three.js specific | `shared-` = engine-agnostic | `babylonjs-` = sẽ thêm khi Phase A Babylon bắt đầu.
+> 8/12 skills THREEJS đã build. 4 skills còn lại — Phase B/C.
 
 ---
 
@@ -14,7 +15,7 @@
 | 3   | `performance-budget` | ✅ Done    | Cao        | Leaf         |
 | 4   | `module-handoff`     | ✅ Done    | Trung bình | Level 2      |
 | 5   | `new-module`         | ✅ Done    | Cao        | Orchestrator |
-| 6   | `gltf-pipeline`      | ✅ Done    | Cao        | Leaf         |
+| 6   | `shared-gltf-pipeline`      | ✅ Done    | Cao        | Leaf         |
 | 7   | `global-uniforms`    | ✅ Done    | Cao        | Level 2      |
 | 8   | `triplanar-mapping`  | ✅ Done    | Cao        | Level 2      |
 | 9   | `new-project`        | 📋 Phase B | Trung bình | Leaf         |
@@ -54,7 +55,7 @@ Thực hiện không thường xuyên (mỗi project mới). Tuy nhiên nếu kh
 
 ---
 
-### 7. `gltf-pipeline` — Cao
+### 7. `shared-gltf-pipeline` — Cao
 
 **Mục đích:** Hướng dẫn đúng thứ tự `gltf-transform` steps: weld → simplify → normals → draco. Bao gồm các flag quan trọng và khi nào bỏ qua bước nào.
 
@@ -137,7 +138,7 @@ VAT là Phase C — dài hạn. Unreal pipeline chưa được setup. Skill này
 ```
 Ngay bây giờ (Phase A cần):
   5. new-module        ← trước khi viết TriplanarMapping
-  7. gltf-pipeline     ← trước khi import AI geometry
+  7. shared-gltf-pipeline      ← trước khi import AI geometry
   8. triplanar-mapping ← cùng lúc viết module
   9. global-uniforms   ← cùng lúc viết module
 
@@ -154,9 +155,9 @@ Phase C (dài hạn):
 
 ## Tổng đánh giá
 
-| Mức độ         | Skills                                                                            | Lý do                          |
-| -------------- | --------------------------------------------------------------------------------- | ------------------------------ |
-| **Bắt buộc**   | dispose-pattern, shader-tsl                                                       | Bug im lặng, tác động lớn nhất |
-| **Cao**        | performance-budget, new-module, gltf-pipeline, triplanar-mapping, global-uniforms | Dùng ngay trong Phase A        |
-| **Trung bình** | module-handoff, new-project, world-class                                          | Hữu ích nhưng không gấp        |
-| **Thấp**       | lod-system, vat-pipeline                                                          | Forward-looking, Phase B/C     |
+| Mức độ         | Skills                                                                                                                      | Lý do                          |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| **Bắt buộc**   | dispose-pattern, shader-tsl                                                                                 | Bug im lặng, tác động lớn nhất |
+| **Cao**        | performance-budget, new-module, shared-gltf-pipeline, triplanar-mapping, global-uniforms    | Dùng ngay trong Phase A        |
+| **Trung bình** | module-handoff, new-project, world-class                                                            | Hữu ích nhưng không gấp        |
+| **Thấp**       | lod-system, vat-pipeline                                                                                    | Forward-looking, Phase B/C     |

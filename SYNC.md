@@ -15,10 +15,12 @@
 
 ## Bảng tổng — tất cả engines
 
-| Engine     | Phase       | Trạng thái          | Modules done | Ghi chú                        |
-| ---------- | ----------- | ------------------- | ------------ | ------------------------------ |
-| `THREEJS`  | Phase A     | 🔄 Đang build       | 2 / 4        | GlobalUniforms, RuntimeGuard ✅ |
-| `BABYLONJS`| Phase B     | ⏳ Chưa bắt đầu     | 0 / 4        | Bắt đầu sau khi Phase A xong   |
+| Engine     | Phase hiện tại                    | Trạng thái      | Modules done | Ghi chú                             |
+| ---------- | --------------------------------- | --------------- | ------------ | ----------------------------------- |
+| `THREEJS`  | Phase A — Environment Foundation  | 🔄 Đang build   | 2 / 5        | GlobalUniforms ✅, RuntimeGuard ✅   |
+| `BABYLONJS`| Phase A — Environment Foundation  | ⏳ Chưa bắt đầu | 0 / 4        | Bắt đầu sau khi THREEJS Phase A xong |
+
+> Chi tiết từng phase → `THREEJS/ROADMAP.md` và `BABYLONJS/ROADMAP.md`.
 
 **Shared assets:** `assets/` — chưa có asset nào, REGISTRY.json trống.
 
@@ -28,13 +30,15 @@
 
 ### Trạng thái Phase A
 
-| Module           | Status     |
-| ---------------- | ---------- |
-| `GlobalUniforms` | ✅ unit-pass |
-| `RuntimeGuard`   | ✅ unit-pass |
+| Module             | Status       |
+| ------------------ | ------------ |
+| `GlobalUniforms`   | ✅ unit-pass |
+| `RuntimeGuard`     | ✅ unit-pass |
 | `TriplanarMapping` | ⏳ chưa code |
-| `WorldNoise`     | ⏳ chưa code |
-| `RoundedCorners` | ⏳ chưa code |
+| `WorldNoise`       | ⏳ chưa code |
+| `RoundedCorners`   | ⏳ chưa code |
+
+> Build order + dependency đầy đủ → `THREEJS/ROADMAP.md`
 
 **00-Threejs:** Template sạch — chưa import module nào, `.module-lock.json` chưa có entry.
 

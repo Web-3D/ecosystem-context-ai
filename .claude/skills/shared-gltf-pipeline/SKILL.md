@@ -1,5 +1,5 @@
 ---
-name: gltf-pipeline
+name: shared-gltf-pipeline
 description: Use when optimizing, cleaning, or compressing .glb/.gltf files for Three.js. Triggers on gltf-transform commands, model import prep, or geometry optimization. Also triggers on Vietnamese phrases: "làm sạch model", "tối ưu model", "nén model", "weld", "draco", "simplify mesh", "import geometry", "chuẩn bị model". Do NOT use for runtime LOD switching — that's the lod-system skill.
 ---
 
@@ -143,7 +143,7 @@ Checklist:
 
 **Runtime sau khi load:**
 - File size không ảnh hưởng runtime GPU — chỉ ảnh hưởng load time
-- Triangle count sau simplify → ảnh hưởng trực tiếp GPU budget (xem `performance-budget` skill)
+- Triangle count sau simplify → ảnh hưởng trực tiếp GPU budget (xem `threejs-performance-budget` skill)
 
 **DRACOLoader setup bắt buộc khi dùng file đã draco:**
 
