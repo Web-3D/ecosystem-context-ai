@@ -44,6 +44,8 @@
 - Tạo `BABYLONJS/` engine skeleton — `CLAUDE.md` + `babylon-modules/`
 - Cập nhật `SYNC.md` → cấu trúc multi-engine (sections per engine)
 - Cập nhật root `CLAUDE.md`, `GEMINI.md`, `.claude/README.md`, `.gemini/README.md` — link đúng cả 2 engine
+- Init git ecosystem root → github.com/NgQuan86/Web-3D-Ecosystem (public)
+- Init git BABYLONJS → github.com/NgQuan86/babylonjs-modules (public)
 
 #### 2026-05-09 — Claude Code
 - Setup workspace root git repo (`THREEJS/`) — track AI instructions + scripts + skills
