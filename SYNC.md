@@ -17,8 +17,8 @@
 
 | Engine     | Phase hiện tại                    | Trạng thái              | Modules done | Ghi chú                             |
 | ---------- | --------------------------------- | ----------------------- | ------------ | ----------------------------------- |
-| `THREEJS`  | Phase D ✅ hoàn thành             | ✅ Tất cả 4 phases xong | 26 / 26      | 26 modules. +6 mới: BaseGPUEffect, BeamEffect, BillboardSprite, ShockwaveRing, BaseShaderMaterial, BaseWorld. Docs site live 2026-05-17. |
-| `BABYLONJS`| Phase A — Environment Foundation  | ⏳ Chưa bắt đầu         | 0 / 4        | Bắt đầu sau khi THREEJS Phase D xong |
+| `THREEJS`  | Phase E ✅ hoàn thành             | ✅ Phase A–E xong       | 29 / 29      | +3 Phase E: InteractionSystem, AnimationSystem, ScrollTimeline. Docs site live 2026-05-17. |
+| `BABYLONJS`| Phase B — Advanced Environment    | ✅ Hoàn thành           | 8 / 8        | Phase A+B done. Phase C tiếp theo |
 
 > Tiến trình chi tiết → [`/ROADMAP.md`](ROADMAP.md) (nguồn duy nhất cho status).
 
@@ -33,6 +33,12 @@ Gallery: `00-Threejs/src/gallery/` — 16 live canvas cards. Chưa tích hợp v
 → Module index + next steps: [`/ROADMAP.md`](ROADMAP.md)
 
 ### Log [THREEJS]
+
+#### 2026-05-18 — Claude Code (Phase E hoàn thành)
+- **Phase E unit-pass** — 3 modules: InteractionSystem, AnimationSystem, ScrollTimeline
+- **InteractionSystem** — Raycaster wrapper: hover/click/pointerEnter/Leave trên bất kỳ Object3D nào, không global state
+- **AnimationSystem** — AnimationMixer wrapper: play/crossFade/pause/stop glTF AnimationClip, warnMissing helper
+- **ScrollTimeline** — scroll → CatmullRomCurve3 camera path, lookAt fixed|tangent, smooth lerp
 
 #### 2026-05-17 — Claude Code (Docs site + GEMINI.md sync)
 - **Docs site live** — VitePress tại `c:\Docs\`, deploy https://docs-3d-ng.vercel.app/
@@ -81,7 +87,7 @@ Gallery: `00-Threejs/src/gallery/` — 16 live canvas cards. Chưa tích hợp v
 - Tạo `BABYLONJS/` engine skeleton — `CLAUDE.md` + `babylon-modules/`
 - Cập nhật `SYNC.md` → cấu trúc multi-engine (sections per engine)
 - Cập nhật root `CLAUDE.md`, `GEMINI.md`, `.claude/README.md`, `.gemini/README.md` — link đúng cả 2 engine
-- Init git ecosystem root → github.com/NgQuan86/Web-3D-Ecosystem (public)
+- Init git ecosystem root → github.com/Web-3D/ecosystem-context-ai (public)
 - Init git BABYLONJS → github.com/NgQuan86/babylonjs-modules (public)
 
 #### 2026-05-09 — Claude Code
@@ -95,10 +101,18 @@ Gallery: `00-Threejs/src/gallery/` — 16 live canvas cards. Chưa tích hợp v
 
 ## BABYLONJS
 
-**0 modules — Phase A chưa bắt đầu. Điều kiện bắt đầu đã đạt ✅ (THREEJS Phase D xong).**
+**4/4 modules — Phase A ✅ hoàn thành (2026-05-18).** Phase B chờ bắt đầu.
 → Module index: [`/ROADMAP.md`](ROADMAP.md)
 
 ### Log [BABYLONJS]
+
+#### 2026-05-18 — Claude Code (Phase A bắt đầu)
+- Tạo `00-Babylon/` project — Vite + TypeScript + Babylon.js 8.56.2
+- `RuntimeGuard` unit-pass ✅ — adapt từ THREEJS, dùng `SceneInstrumentation.drawCallsCounter` + `scene.totalActiveIndicesPerfCounter.current / 3`
+- `TriplanarMapping` unit-pass ✅ — NME programmatic wiring: `TriPlanarBlock` (built-in) + `TransformBlock` cho world pos/normal
+- `WorldNoise` unit-pass ✅ — NME: `SimplexPerlin3DBlock` + `AnimatedInputBlockTypes.RealTime` (không cần update() thủ công)
+- `RoundedCorners` unit-pass ✅ — ShaderMaterial GLSL: UV SDF, engine auto-convert WGSL
+- **Phase B hoàn thành:** LODSystem (Mesh.addLODLevel), ProceduralFracture (GLSL vertex displacement), InteriorMapping (GLSL parallax + UV derivatives), SparkSystem (GPUParticleSystem + NoiseProceduralTexture)
 
 #### 2026-05-12 — Claude Code
 - Tạo engine skeleton: `BABYLONJS/CLAUDE.md` + `babylon-modules/`
