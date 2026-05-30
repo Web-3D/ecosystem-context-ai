@@ -32,6 +32,12 @@ Gallery: `00-Threejs/src/gallery/` — 16 live canvas cards. Chưa tích hợp v
 
 ### Log [THREEJS]
 
+#### 2026-05-30 — Claude Code (cấu trúc: ui/ + known-issues/ + atelier decision)
+- **Category module mới `ui/`** — widget DOM thuần (companion UI cho 3D tool, KHÔNG Three.js). Module đầu: `Tabs` (folder-style, ARIA + keyboard). `validate.js` whitelist thêm `ui`.
+- **`known-issues/` — hệ thống mới** ở THREEJS root: catalog lỗi thường gặp `KI-NNN` (meta tag category/severity/status). Phân định rõ: `decisions/` = thay đổi cấu trúc lớn · `known-issues/` = lỗi thường gặp.
+- **Quyết định atelier ↔ ArchPlan (đang thiết kế, chưa code):** palette node = consumer RUNTIME của atelier (đọc generated palette-index 1 chiều, không live cross-repo import). Model chốt: bảng swatch-lưới + cọ click-3D (pick layer vô hình vì tường merge). Sync mechanism dùng lại Phase 1 generated-file của atelier. ADR sẽ ghi sau spike.
+- **Repo 01-Doraemon có remote** → `github.com/Web-3D/Doraemon.git` (trước đó local-only).
+
 #### 2026-05-18 — Claude Code (Phase E hoàn thành)
 - **Phase E unit-pass** — 3 modules: InteractionSystem, AnimationSystem, ScrollTimeline
 - **InteractionSystem** — Raycaster wrapper: hover/click/pointerEnter/Leave trên bất kỳ Object3D nào, không global state
